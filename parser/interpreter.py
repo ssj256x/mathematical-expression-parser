@@ -1,4 +1,4 @@
-from . import TokenType
+from .token import TokenType
 from .ast import ASTNode, NumberNode, BinOpNode, UnaryOpNode
 
 
