@@ -1,5 +1,5 @@
 from . import TokenType
-from .ast import ASTNode, NumberNode, BinOpNode
+from .ast import ASTNode, NumberNode, BinOpNode, UnaryOpNode
 
 
 class Interpreter:
@@ -7,6 +7,17 @@ class Interpreter:
 
         if isinstance(node, NumberNode):
             return node.value
+
+        if isinstance(node, UnaryOpNode):
+            value = self.evaluate(node.expr)
+
+            match node.op_token:
+                case TokenType.MINUS:
+                    return -value
+                case TokenType.PLUS:
+                    return +value
+                case c:
+                    raise Exception(f'Unexpected Token : {c}')
 
         if isinstance(node, BinOpNode):
             left = self.evaluate(node.left)

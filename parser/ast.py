@@ -18,3 +18,9 @@ class BinOpNode(ASTNode):
         self.left = left
         self.op_token = op_token.t_type
         self.right = right
+
+
+class UnaryOpNode(ASTNode):
+    def __init__(self, op_token: Token, expr: ASTNode):
+        self.op_token = op_token.t_type
+        self.expr = expr
